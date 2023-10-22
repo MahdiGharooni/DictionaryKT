@@ -13,9 +13,7 @@ data class WordInfoDto(
 
 fun WordInfoDto.toWordInfo(): WordInfo {
     return WordInfo(
-        license = license,
         meaning = meaning.map { it.toMeaning() },
-        sourceUrls = sourceUrls,
         word = word,
         phonetic = phonetic,
     )
