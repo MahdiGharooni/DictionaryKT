@@ -1,5 +1,6 @@
 package com.plcoding.dictionary.feature_dictionary.data.remote.dto
 
+import com.plcoding.dictionary.feature_dictionary.data.local.entity.WordInfoEntity
 import com.plcoding.dictionary.feature_dictionary.domain.model.WordInfo
 
 data class WordInfoDto(
@@ -16,5 +17,13 @@ fun WordInfoDto.toWordInfo(): WordInfo {
         meaning = meaning.map { it.toMeaning() },
         word = word,
         phonetic = phonetic,
+    )
+}
+
+fun WordInfoDto.toWordInfoEntity(): WordInfoEntity {
+    return WordInfoEntity(
+        word = word,
+        phonetic = phonetic,
+        meanings = meaning.map { it.toMeaning() }
     )
 }
