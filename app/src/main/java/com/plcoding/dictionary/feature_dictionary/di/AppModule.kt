@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.plcoding.dictionary.feature_dictionary.data.local.WordInfoDatabase
 import com.plcoding.dictionary.feature_dictionary.data.remote.DictionaryApi
 import com.plcoding.dictionary.feature_dictionary.data.repository.WordInfoRepositoryImpl
+import com.plcoding.dictionary.feature_dictionary.data.util.Converters
 import com.plcoding.dictionary.feature_dictionary.data.util.GsonParser
 import com.plcoding.dictionary.feature_dictionary.domain.repository.WordInfoRepository
 import com.plcoding.dictionary.feature_dictionary.domain.use_case.GetWordUseCase
@@ -37,7 +38,7 @@ object AppModule {
     fun provideDatabase(app: Application): WordInfoDatabase {
         return Room.databaseBuilder(
             app, WordInfoDatabase::class.java, "word_db"
-        ).addTypeConverter(GsonParser(Gson())).build()
+        ).addTypeConverter(Converters(GsonParser(Gson()))).build()
     }
 
     @Provides

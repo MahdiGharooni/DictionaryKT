@@ -4,7 +4,6 @@ import com.plcoding.dictionary.core.util.Resource
 import com.plcoding.dictionary.feature_dictionary.data.local.WordInfoDao
 import com.plcoding.dictionary.feature_dictionary.data.local.entity.toWordInfo
 import com.plcoding.dictionary.feature_dictionary.data.remote.DictionaryApi
-import com.plcoding.dictionary.feature_dictionary.data.remote.dto.toWordInfo
 import com.plcoding.dictionary.feature_dictionary.data.remote.dto.toWordInfoEntity
 import com.plcoding.dictionary.feature_dictionary.domain.model.WordInfo
 import com.plcoding.dictionary.feature_dictionary.domain.repository.WordInfoRepository
@@ -26,7 +25,7 @@ class WordInfoRepositoryImpl @Inject constructor(
 
         try {
             val apiWordInfo = api.getWord(word)
-            dao.deleteWordInfos(apiWordInfo.map { it.toWordInfo() })
+            dao.deleteWordInfos(apiWordInfo.map { it.word})
             dao.insertWordInfos(apiWordInfo.map { it.toWordInfoEntity() })
         } catch (e: HttpException) {
             emit(Resource.Error("Oops, something went wrong", wordInfo))
