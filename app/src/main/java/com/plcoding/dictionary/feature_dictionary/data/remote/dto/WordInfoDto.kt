@@ -5,7 +5,7 @@ import com.plcoding.dictionary.feature_dictionary.domain.model.WordInfo
 
 data class WordInfoDto(
     val license: License,
-    val meaning: List<MeaningDto>,
+    val meanings: List<MeaningDto>,
     val phonetic: String,
     val phonetics: List<PhoneticDto>,
     val sourceUrls: List<String>,
@@ -14,7 +14,7 @@ data class WordInfoDto(
 
 fun WordInfoDto.toWordInfo(): WordInfo {
     return WordInfo(
-        meaning = meaning.map { it.toMeaning() },
+        meaning = meanings.map { it.toMeaning() },
         word = word,
         phonetic = phonetic,
     )
@@ -24,6 +24,6 @@ fun WordInfoDto.toWordInfoEntity(): WordInfoEntity {
     return WordInfoEntity(
         word = word,
         phonetic = phonetic,
-        meanings = meaning.map { it.toMeaning() }
+        meanings = meanings.map { it.toMeaning() }
     )
 }
